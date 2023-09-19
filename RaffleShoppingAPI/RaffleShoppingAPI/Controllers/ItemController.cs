@@ -3,10 +3,10 @@
 namespace RaffleShoppingAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/items")]
     public class ItemController : Controller
     {
-        private static readonly string[] Summaries = new[]
+        private static readonly string[] ItemNames = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
@@ -18,28 +18,24 @@ namespace RaffleShoppingAPI.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetItems")]
+        [HttpGet("get-items", Name = "GetItems")]
         public IEnumerable<ItemDTO> GetItems()
         {
             return Enumerable.Range(1, 5).Select(index => new ItemDTO
             {
-                Name = $"{Random.Shared.Next(Summaries.Length)}"
+                Name = ItemNames[Random.Shared.Next(ItemNames.Length)]
             })
             .ToArray();
         }
 
-        [HttpGet]
-        public ItemDTO Get()
+        [HttpGet("get-item", Name = "GetItem")]
+        public ItemDTO GetItem()
         {
             return new ItemDTO
             {
-                Name = $"{Random.Shared.Next(Summaries.Length)}"
+                Name = ItemNames[Random.Shared.Next(ItemNames.Length)],
+                Price = 0
             };
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
     }
 }

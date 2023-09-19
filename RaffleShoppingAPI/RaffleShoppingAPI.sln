@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping", "Raffle Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShoppingTest", "RaffleShoppingTest\RaffleShoppingTest.csproj", "{BD923738-8C19-4349-9B80-7AA757E4665E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaffleShoppingAPI", "RaffleShoppingAPI\RaffleShoppingAPI.csproj", "{9CB5BB17-D5AB-4E86-BEC5-2AE450136ADB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShoppingAPI", "RaffleShoppingAPI\RaffleShoppingAPI.csproj", "{9CB5BB17-D5AB-4E86-BEC5-2AE450136ADB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
