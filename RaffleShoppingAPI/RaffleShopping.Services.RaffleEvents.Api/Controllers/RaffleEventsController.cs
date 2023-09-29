@@ -14,11 +14,13 @@ namespace RaffleShopping.Services.RaffleEvents.Api.Controllers
             {   
                 new RaffleEventDto
                 {
+                    Id = 1,
                     Title = "Test Item 1",
                     Price = 0
                 } ,
                 new RaffleEventDto
                 {
+                    Id = 2,
                     Title = "Test Item 2",
                     Price = 3
                 }

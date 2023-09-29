@@ -11,7 +11,7 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
         public IActionResult Login([FromBody] LoginModel loginModel)
         {
             // Replace this with your actual authentication logic
-            if (loginModel.Email == "example@email.com" && loginModel.Password == "examplePassword")
+            if (loginModel.Email == "a@b.c" && loginModel.Password == "123")
             {
                 // Authentication successful
                 return Ok(new { Message = "Login successful" });
