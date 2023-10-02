@@ -8,7 +8,7 @@ namespace RaffleShoppingAPI.Controllers
     {
         private static readonly string[] ItemNames = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        "Nippers", "Ruler", "Eraser", "Sand Paper", "Cotton Buds", "Shaver", "Desk Lamp", "Speaker", "Pencil", "Deodorant"
         };
 
         private readonly ILogger<ItemController> _logger;
