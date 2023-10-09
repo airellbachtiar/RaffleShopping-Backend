@@ -1,18 +1,24 @@
-version: '3.4'
-
+version: '1'
 services:
+  # React Frontend
+  frontend:
+    build:
+      context: ../RaffleShopping-Frontend
+    ports:
+      - "3000:3000"
+
   raffleshopping.services.customers.api:
     image: ${DOCKER_REGISTRY-}raffleshoppingservicescustomersapi
     build:
-      context: .
+      context: ./
       dockerfile: RaffleShopping.Services.Customers.Api/Dockerfile
-#    ports:
-#    - "50002:80"
+    ports:
+    - "50000:80"
 
   raffleshopping.services.raffleevents.api:
     image: ${DOCKER_REGISTRY-}raffleshoppingservicesraffleeventsapi
     build:
-      context: .
+      context: ./
       dockerfile: RaffleShopping.Services.RaffleEvents.Api/Dockerfile
-#    ports:
-#    - "50000:80"
+    ports:
+    - "50001:80"
