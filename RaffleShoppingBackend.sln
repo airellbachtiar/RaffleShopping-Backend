@@ -7,21 +7,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping", "Raffle Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShoppingTest", "RaffleShoppingTest\RaffleShoppingTest.csproj", "{BD923738-8C19-4349-9B80-7AA757E4665E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShoppingAPI", "RaffleShoppingAPI\RaffleShoppingAPI.csproj", "{9CB5BB17-D5AB-4E86-BEC5-2AE450136ADB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{A257AD4B-B797-44D9-8F75-ACDC587BFE23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customers", "Customers", "{A23DBD0F-EEA7-4DF0-9CF3-0712DD24E36D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaffleShopping.Services.Customers.Api", "RaffleShopping.Services.Customers.Api\RaffleShopping.Services.Customers.Api.csproj", "{581F83D5-AA79-4E73-8F03-180C99AA2B52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.Customers.Api", "RaffleShopping.Services.Customers.Api\RaffleShopping.Services.Customers.Api.csproj", "{581F83D5-AA79-4E73-8F03-180C99AA2B52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaffleShopping.Services.Customers", "RaffleShopping.Services.Customers\RaffleShopping.Services.Customers.csproj", "{426A4EFA-2A49-43C2-A118-96B165A112E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.Customers", "RaffleShopping.Services.Customers\RaffleShopping.Services.Customers.csproj", "{426A4EFA-2A49-43C2-A118-96B165A112E9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RaffleEvents", "RaffleEvents", "{C16E00AA-9BF9-47B0-88FB-A066CB37C6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaffleShopping.Services.RaffleEvents.Api", "RaffleShopping.Services.RaffleEvents.Api\RaffleShopping.Services.RaffleEvents.Api.csproj", "{8401CDC4-C229-4225-AE64-6F9E7363BAF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.RaffleEvents.Api", "RaffleShopping.Services.RaffleEvents.Api\RaffleShopping.Services.RaffleEvents.Api.csproj", "{8401CDC4-C229-4225-AE64-6F9E7363BAF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaffleShoppping.Services.RaffleEvents", "RaffleShoppping.Services.RaffleEvents\RaffleShoppping.Services.RaffleEvents.csproj", "{AFE66221-10AB-49C6-A78A-76471C2124D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShoppping.Services.RaffleEvents", "RaffleShoppping.Services.RaffleEvents\RaffleShoppping.Services.RaffleEvents.csproj", "{AFE66221-10AB-49C6-A78A-76471C2124D7}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{67EC3530-00F2-405D-BD2C-5B3568C59B0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2A6252FB-E278-4D87-AFDB-FE33FA782B27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{A08EC4D3-DEAD-4307-BFE7-649E6DA10C72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customers", "Customers", "{522AA1F4-B265-4D5A-BDF9-1DFE7BDE2DA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.Customers.UnitTests", "RaffleShopping.Services.Customers.UnitTests\RaffleShopping.Services.Customers.UnitTests.csproj", "{783240C9-E32B-4264-B5E0-00CFD92F234E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +45,6 @@ Global
 		{BD923738-8C19-4349-9B80-7AA757E4665E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD923738-8C19-4349-9B80-7AA757E4665E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD923738-8C19-4349-9B80-7AA757E4665E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9CB5BB17-D5AB-4E86-BEC5-2AE450136ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9CB5BB17-D5AB-4E86-BEC5-2AE450136ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9CB5BB17-D5AB-4E86-BEC5-2AE450136ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9CB5BB17-D5AB-4E86-BEC5-2AE450136ADB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{581F83D5-AA79-4E73-8F03-180C99AA2B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{581F83D5-AA79-4E73-8F03-180C99AA2B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{581F83D5-AA79-4E73-8F03-180C99AA2B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +61,14 @@ Global
 		{AFE66221-10AB-49C6-A78A-76471C2124D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFE66221-10AB-49C6-A78A-76471C2124D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFE66221-10AB-49C6-A78A-76471C2124D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67EC3530-00F2-405D-BD2C-5B3568C59B0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67EC3530-00F2-405D-BD2C-5B3568C59B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67EC3530-00F2-405D-BD2C-5B3568C59B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67EC3530-00F2-405D-BD2C-5B3568C59B0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783240C9-E32B-4264-B5E0-00CFD92F234E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783240C9-E32B-4264-B5E0-00CFD92F234E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783240C9-E32B-4264-B5E0-00CFD92F234E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783240C9-E32B-4264-B5E0-00CFD92F234E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +80,9 @@ Global
 		{C16E00AA-9BF9-47B0-88FB-A066CB37C6B2} = {A257AD4B-B797-44D9-8F75-ACDC587BFE23}
 		{8401CDC4-C229-4225-AE64-6F9E7363BAF1} = {C16E00AA-9BF9-47B0-88FB-A066CB37C6B2}
 		{AFE66221-10AB-49C6-A78A-76471C2124D7} = {C16E00AA-9BF9-47B0-88FB-A066CB37C6B2}
+		{A08EC4D3-DEAD-4307-BFE7-649E6DA10C72} = {2A6252FB-E278-4D87-AFDB-FE33FA782B27}
+		{522AA1F4-B265-4D5A-BDF9-1DFE7BDE2DA4} = {A08EC4D3-DEAD-4307-BFE7-649E6DA10C72}
+		{783240C9-E32B-4264-B5E0-00CFD92F234E} = {522AA1F4-B265-4D5A-BDF9-1DFE7BDE2DA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C1F5EA1-0A46-4B25-8AD9-D4A01204D73B}

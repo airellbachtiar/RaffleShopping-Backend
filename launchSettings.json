@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "raffleshopping.services.customers.api": "StartDebugging",
+        "raffleshopping.services.raffleevents.api": "StartDebugging"
+      }
+    }
+  }
+}
