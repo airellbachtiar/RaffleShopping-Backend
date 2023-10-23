@@ -3,26 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace RaffleShopping.Services.Customers.Features.LoggingInCustomer
+namespace RaffleShopping.Services.Customers.Features.HashingString
 {
-    public class LoginCustomer
+    public static class HashString
     {
-        public bool Login(string email, string password)
-        {
-            password = HashPassword(password);
-            if (email == "a@b.c" && password == "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private string HashPassword(string password)
+        public static string Hash(string password)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
