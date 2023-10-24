@@ -1,5 +1,4 @@
 ﻿using Moq;
-using RaffleShopping.Services.Customers.Dtos;
 using RaffleShopping.Services.Customers.Features.HashingString;
 using RaffleShopping.Services.Customers.Models;
 using RaffleShopping.Services.Customers.Repositories;
