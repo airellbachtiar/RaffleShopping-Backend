@@ -1,6 +1,7 @@
 using RaffleShopping.Services.Customers.Models;
 using RaffleShopping.Services.Customers.Repositories;
 using RaffleShopping.Services.Customers.Services;
+using DotNetEnv.Configuration;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -16,14 +17,18 @@ builder.Services.AddCors(options =>
 });
 
 // Configure Cosmos DB client
-var configuration = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json")
+//Load Env file
+DotNetEnv.Env.Load();
+
+//Add MongoDB
+var config = new ConfigurationBuilder()
+    .AddEnvironmentVariables()
+    .AddDotNetEnv()
     .Build();
 
-string connectionString = configuration.GetSection("ConnectionStrings:ConnectionString").Value;
-string databaseName = configuration.GetSection("ConnectionStrings:DatabaseName").Value;
-string collectionName = configuration.GetSection("ConnectionStrings:CollectionName").Value;
+string connectionString = config.GetValue<string>("CONNECTION_STRING");
+string databaseName = config.GetValue<string>("DATABASE_NAME");
+string collectionName = config.GetValue<string>("COLLECTION_NAME");
 
 builder.Services.Configure<CustomerDatabaseSettings>(options =>
 {
