@@ -16,8 +16,13 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
+    - name: Create env file
+      run: |
+        echo "${{ secrets.ENV_SECRET }}" | base64 --decode > .env
 
   CustomerTest:
+    name: CustomerTest
+    needs: Build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
