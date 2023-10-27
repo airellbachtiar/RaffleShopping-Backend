@@ -1,13 +1,5 @@
 version: '1'
 services:
-  # React Frontend
-  frontend:
-    image: airell/raffle-shopping-frontend:latest
-    build:
-      context: ../RaffleShopping-Frontend
-    ports:
-      - "3000:3000"
-
   raffleshopping.services.customers.api:
     image: airell/raffle-shopping-customer-service:latest
     build:
