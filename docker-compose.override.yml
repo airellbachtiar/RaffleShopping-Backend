@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  raffleshopping.services.customers.api:
+  raffleshopping-services-customers-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
@@ -10,7 +10,7 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-  raffleshopping.services.raffleevents.api:
+  raffleshopping-services-raffleevents-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80

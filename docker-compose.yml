@@ -1,14 +1,25 @@
 version: '1'
 services:
-  raffleshopping.services.customers.api:
+  frontend:
+    image: airell/raffle-shopping-frontend:latest
+    build:
+      context: ../RaffleShopping-Frontend
+    ports:
+      - "3000:3000"
+
+  raffleshopping-services-customers-api:
     image: airell/raffle-shopping-customer-service:latest
     build:
       context: ./
       dockerfile: RaffleShopping.Services.Customers.Api/Dockerfile
     ports:
     - "50000:80"
+    environment:
+    - CONNECTION_STRING=${CONNECTION_STRING}
+    - DATABASE_NAME=${DATABASE_NAME}
+    - COLLECTION_NAME=${COLLECTION_NAME}
 
-  raffleshopping.services.raffleevents.api:
+  raffleshopping-services-raffleevents-api:
     image: airell/raffle-shopping-raffle-event-service:latest
     build:
       context: ./
