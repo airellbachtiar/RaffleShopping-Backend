@@ -5,7 +5,10 @@ services:
     build:
       context: ../RaffleShopping-Frontend
     ports:
-      - "3000:3000"
+    - "3000:3000"
+    labels:
+      kompose.service.type: LoadBalancer
+
 
   raffleshopping-services-customers-api:
     image: airell/raffle-shopping-customer-service:latest
@@ -18,6 +21,9 @@ services:
     - CONNECTION_STRING=${CONNECTION_STRING}
     - DATABASE_NAME=${DATABASE_NAME}
     - COLLECTION_NAME=${COLLECTION_NAME}
+    labels:
+      kompose.service.type: LoadBalancer
+
 
   raffleshopping-services-raffleevents-api:
     image: airell/raffle-shopping-raffle-event-service:latest
@@ -26,3 +32,5 @@ services:
       dockerfile: RaffleShopping.Services.RaffleEvents.Api/Dockerfile
     ports:
     - "50001:80"
+    labels:
+      kompose.service.type: LoadBalancer

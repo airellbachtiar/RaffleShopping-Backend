@@ -16,14 +16,14 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: raffleshopping-services-customers-api
+            name: raffleshopping-services-customers-api-tcp
             port:
               number: 50000
-      - path: /raffle-events
+      - path: /
         pathType: Prefix
         backend:
           service:
-            name: raffleshopping-services-raffleevents-api
+            name: raffleshopping-services-raffleevents-api-tcp
             port:
               number: 50001
       - path: /
