@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\RaffleShopping.Services.Catalogs\RaffleShopping.Services.Catalogs.csproj" />
   </ItemGroup>
 
 </Project>

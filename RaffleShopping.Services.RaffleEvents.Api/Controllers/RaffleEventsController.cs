@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RaffleShoppping.Services.RaffleEvents.Dtos;
+using RaffleShoppping.Services.RaffleEvents.Services;
 
 namespace RaffleShopping.Services.RaffleEvents.Api.Controllers
 {
@@ -25,6 +26,15 @@ namespace RaffleShopping.Services.RaffleEvents.Api.Controllers
                     Price = 3
                 }
             };
+        }
+
+        [HttpGet]
+        [Route("get-catalogs")]
+        public IActionResult GetCatalogsFromMessageBus()
+        {
+            RaffleEventService catalogService = new RaffleEventService();
+            _ = catalogService.ReceiveMessageAsync();
+            return Ok();
         }
     }
 }
