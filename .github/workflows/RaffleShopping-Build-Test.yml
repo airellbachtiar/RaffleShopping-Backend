@@ -2,7 +2,7 @@ name: Raffle Shopping API CI
 
 on:
   push:
-    branches: [ "main", "docker" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
