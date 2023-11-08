@@ -1,14 +1,14 @@
 version: '1'
 services:
-  frontend:
-    image: airell/raffle-shopping-frontend:latest
-    build:
-      context: ../RaffleShopping-Frontend
-    ports:
-    - "3000:3000"
-    labels:
-      kompose.service.type: LoadBalancer
 
+  # frontend:
+  #   image: airell/raffle-shopping-frontend:latest
+  #   build:
+  #     context: ../RaffleShopping-Frontend
+  #   ports:
+  #   - "3000:3000"
+  #   labels:
+  #     kompose.service.type: LoadBalancer
 
   raffleshopping-services-customers-api:
     image: airell/raffle-shopping-customer-service:latest
