@@ -18,12 +18,11 @@ services:
     ports:
     - "50000:80"
     environment:
-    - CONNECTION_STRING=${CONNECTION_STRING}
-    - DATABASE_NAME=${DATABASE_NAME}
-    - COLLECTION_NAME=${COLLECTION_NAME}
+    - CONNECTION_STRING=${CUSTOMERS_CONNECTION_STRING}
+    - DATABASE_NAME=${CUSTOMERS_DATABASE_NAME}
+    - COLLECTION_NAME=${CUSTOMERS_COLLECTION_NAME}
     labels:
       kompose.service.type: LoadBalancer
-
 
   raffleshopping-services-raffleevents-api:
     image: airell/raffle-shopping-raffle-event-service:latest
@@ -32,5 +31,19 @@ services:
       dockerfile: RaffleShopping.Services.RaffleEvents.Api/Dockerfile
     ports:
     - "50001:80"
+    labels:
+      kompose.service.type: LoadBalancer
+
+  raffleshopping-services-catalogs-api:
+    image: airell/raffle-shopping-catalog-service:latest
+    build:
+      context: ./
+      dockerfile: RaffleShopping.Services.Catalogs.Api/Dockerfile
+    ports:
+    - "50002:80"
+    environment:
+    - CONNECTION_STRING=${CATALOGS_CONNECTION_STRING}
+    - DATABASE_NAME=${CATALOGS_DATABASE_NAME}
+    - COLLECTION_NAME=${CATALOGS_COLLECTION_NAME}
     labels:
       kompose.service.type: LoadBalancer

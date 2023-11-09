@@ -1,3 +1,8 @@
+using RaffleShopping.Services.Catalogs.Models;
+using RaffleShopping.Services.Catalogs.Repositories;
+using RaffleShopping.Services.Catalogs.Services;
+using DotNetEnv.Configuration;
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +15,31 @@ builder.Services.AddCors(options =>
                           policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                       });
 });
+
+// Configure Cosmos DB client
+//Load Env file
+DotNetEnv.Env.Load();
+
+//Add MongoDB
+var config = new ConfigurationBuilder()
+    .AddEnvironmentVariables()
+    .AddDotNetEnv()
+    .Build();
+
+string connectionString = config.GetValue<string>("CONNECTION_STRING");
+string databaseName = config.GetValue<string>("DATABASE_NAME");
+string collectionName = config.GetValue<string>("COLLECTION_NAME");
+
+builder.Services.Configure<CatalogDatabaseSettings>(options =>
+{
+    options.ConnectionString = connectionString;
+    options.DatabaseName = databaseName;
+    options.CollectionName = collectionName;
+});
+
 // Add services to the container.
+builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
+builder.Services.AddSingleton<ICatalogServices, CatalogServices>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

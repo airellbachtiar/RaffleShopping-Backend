@@ -1,14 +1,32 @@
 ﻿using Azure.Identity;
 using Azure.Messaging.ServiceBus;
+using RaffleShopping.Services.Catalogs.Dtos;
+using RaffleShopping.Services.Catalogs.Models;
+using RaffleShopping.Services.Catalogs.Repositories;
 
 namespace RaffleShopping.Services.Catalogs.Services
 {
-    public class CatalogServices
+    public class CatalogServices : ICatalogServices
     {
+        private readonly ICatalogRepository _catalogRepository;
+        public CatalogServices(ICatalogRepository catalogRepository)
+        {
+            _catalogRepository = catalogRepository;
+        }
 
-        public CatalogServices() { }
+        public void AddCatalog(AddCatalogDto addCatalogDto)
+        {
+            Catalog catalog = new Catalog
+            {
+                Title = addCatalogDto.Title,
+                Description = addCatalogDto.Description,
+                Price = addCatalogDto.Price
+            };
+            _catalogRepository.AddCatalogAsync(catalog);
+            _ = QueueCatalogAsync();
+        }
 
-        public async Task QueueCatalogAsync()
+        private async Task QueueCatalogAsync()
         {
             ServiceBusClient client;
 
@@ -25,7 +43,7 @@ namespace RaffleShopping.Services.Catalogs.Services
                 "raffleshopping.servicebus.windows.net",
                 new DefaultAzureCredential(),
                 clientOptions);
-            sender = client.CreateSender("catalogs");   
+            sender = client.CreateSender("catalogs");
 
             using ServiceBusMessageBatch messageBatch = await sender.CreateMessageBatchAsync();
 

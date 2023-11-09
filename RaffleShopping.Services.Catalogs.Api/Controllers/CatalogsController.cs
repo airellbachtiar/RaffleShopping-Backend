@@ -8,14 +8,24 @@ namespace RaffleShopping.Services.Catalogs.Api.Controllers
     [ApiController]
     public class CatalogsController : Controller
     {
-        public CatalogsController() { }
+        private readonly ICatalogServices _catalogServices;
+        public CatalogsController(ICatalogServices catalogServices)
+        {
+            _catalogServices = catalogServices;
+        }
 
-        [HttpPost("addCatalog")]
+        [HttpPost]
         public IActionResult AddCatalog([FromBody] AddCatalogDto addCatalogDto)
         {
-            CatalogServices catalogServices = new CatalogServices();
-            _ = catalogServices.QueueCatalogAsync();
-            return Ok();
+            try
+            {
+                _catalogServices.AddCatalog(addCatalogDto);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
