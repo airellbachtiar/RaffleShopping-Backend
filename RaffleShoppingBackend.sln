@@ -29,9 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.Cus
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalogs", "Catalogs", "{76F8EC42-8D72-40F2-AC47-A624A6C0808D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaffleShopping.Services.Catalogs.Api", "RaffleShopping.Services.Catalogs.Api\RaffleShopping.Services.Catalogs.Api.csproj", "{F6AD3329-8F47-48AC-ACE4-48425E4C6942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.Catalogs.Api", "RaffleShopping.Services.Catalogs.Api\RaffleShopping.Services.Catalogs.Api.csproj", "{F6AD3329-8F47-48AC-ACE4-48425E4C6942}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaffleShopping.Services.Catalogs", "RaffleShopping.Services.Catalogs\RaffleShopping.Services.Catalogs.csproj", "{49C4A4E3-C8FD-4AA3-B59F-87BA64439238}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.Catalogs", "RaffleShopping.Services.Catalogs\RaffleShopping.Services.Catalogs.csproj", "{49C4A4E3-C8FD-4AA3-B59F-87BA64439238}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

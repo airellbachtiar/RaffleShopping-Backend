@@ -1,6 +1,6 @@
-﻿using RaffleShopping.Services.Catalogs.Enums;
+﻿using RaffleShoppping.Services.RaffleEvents.Enums;
 
-namespace RaffleShopping.Services.Catalogs.Dtos
+namespace RaffleShoppping.Services.RaffleEvents.Dtos
 {
     public class AddCatalogDto
     {

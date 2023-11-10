@@ -2,6 +2,8 @@ using RaffleShopping.Services.Catalogs.Models;
 using RaffleShopping.Services.Catalogs.Repositories;
 using RaffleShopping.Services.Catalogs.Services;
 using DotNetEnv.Configuration;
+using Azure.Messaging.ServiceBus;
+using RaffleShopping.Services.Catalogs.ServiceBus;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -29,6 +31,8 @@ var config = new ConfigurationBuilder()
 string connectionString = config.GetValue<string>("CONNECTION_STRING");
 string databaseName = config.GetValue<string>("DATABASE_NAME");
 string collectionName = config.GetValue<string>("COLLECTION_NAME");
+var serviceBusConnectionString = config.GetValue<string>("SERVICE_BUS_CONNECTION_STRING");
+var serviceBusQueueName = config.GetValue<string>("SERVICE_BUS_QUEUE_NAME");
 
 builder.Services.Configure<CatalogDatabaseSettings>(options =>
 {
@@ -37,9 +41,20 @@ builder.Services.Configure<CatalogDatabaseSettings>(options =>
     options.CollectionName = collectionName;
 });
 
+builder.Services.Configure((AzureServiceBusSettings options) =>
+{
+    options.ServiceBusClient = new Azure.Messaging.ServiceBus.ServiceBusClient(serviceBusConnectionString,
+        new ServiceBusClientOptions()
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+    options.QueueName = serviceBusQueueName;
+});
+
 // Add services to the container.
 builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
 builder.Services.AddSingleton<ICatalogServices, CatalogServices>();
+builder.Services.AddSingleton<ICatalogServiceBusClient, CatalogServiceBusClient>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

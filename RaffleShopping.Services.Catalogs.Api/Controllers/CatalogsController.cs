@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RaffleShopping.Services.Catalogs.Dtos;
+using RaffleShopping.Services.Catalogs.ServiceBus;
 using RaffleShopping.Services.Catalogs.Services;
 
 namespace RaffleShopping.Services.Catalogs.Api.Controllers
@@ -9,9 +10,12 @@ namespace RaffleShopping.Services.Catalogs.Api.Controllers
     public class CatalogsController : Controller
     {
         private readonly ICatalogServices _catalogServices;
-        public CatalogsController(ICatalogServices catalogServices)
+        private readonly ICatalogServiceBusClient _serviceBusClient;
+
+        public CatalogsController(ICatalogServices catalogServices, ICatalogServiceBusClient serviceBusClient)
         {
             _catalogServices = catalogServices;
+            _serviceBusClient = serviceBusClient;
         }
 
         [HttpPost]
@@ -20,6 +24,7 @@ namespace RaffleShopping.Services.Catalogs.Api.Controllers
             try
             {
                 _catalogServices.AddCatalog(addCatalogDto);
+                _serviceBusClient.AddCatalog(addCatalogDto);
                 return Ok();
             }
             catch (Exception ex)
