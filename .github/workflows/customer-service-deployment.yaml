@@ -1,4 +1,4 @@
-name: deployment
+name: customer-service-deployment
 "on":
     push:
         branches:
