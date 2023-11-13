@@ -17,10 +17,8 @@ namespace RaffleShopping.Services.Customers.UnitTests
             _customerService = new CustomerService( _customerRepository.Object );
         }
 
-        [Test]
-        public void Login()
+        public void SetupMockLoginCredentials()
         {
-            //Arrange
             var loginCredentials = new Customer
             {
                 Email = "ai.hoshino@email.com",
@@ -28,18 +26,15 @@ namespace RaffleShopping.Services.Customers.UnitTests
             };
 
             _customerRepository.Setup(c => c.GetUserByEmailAsync(loginCredentials.Email)).Returns(loginCredentials);
+        }
+
+        [Test]
+        public void Login_CorrectCredentials_ReturnsTrue()
+        {
+            //Arrange
+            SetupMockLoginCredentials();
 
             //Act
-            bool resultWrongEmail = _customerService.Login(new LoginModel
-            {
-                Email = "ai.hayasaka@email.com",
-                Password = "password"
-            });
-            bool resultWrongPassword = _customerService.Login(new LoginModel
-            {
-                Email = "ai.hoshino@email.com",
-                Password = "wrongpassword"
-            });
             bool resultSuccess = _customerService.Login(new LoginModel
             {
                 Email = "ai.hoshino@email.com",
@@ -47,9 +42,41 @@ namespace RaffleShopping.Services.Customers.UnitTests
             });
 
             //Assert
-            Assert.IsFalse(resultWrongEmail);
-            Assert.IsFalse(resultWrongPassword);
             Assert.IsTrue(resultSuccess);
+        }
+
+        [Test]
+        public void Login_IncorrectEmail_ReturnsFalse()
+        {
+            //Arrange
+            SetupMockLoginCredentials();
+
+            //Act
+            bool resultWrongEmail = _customerService.Login(new LoginModel
+            {
+                Email = "ai.hayasaka@email.com",
+                Password = "password"
+            });
+
+            //Assert
+            Assert.IsFalse(resultWrongEmail);
+        }
+
+        [Test]
+        public void Login_IncorrectPassword_ReturnsFalse()
+        {
+            //Arrange
+            SetupMockLoginCredentials();
+
+            //Act
+            bool resultWrongPassword = _customerService.Login(new LoginModel
+            {
+                Email = "ai.hoshino@email.com",
+                Password = "wrongpassword"
+            });
+
+            //Assert
+            Assert.IsFalse(resultWrongPassword);
         }
 
         [Test]
