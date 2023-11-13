@@ -6,12 +6,12 @@ using RaffleShoppping.Services.RaffleEvents.Models;
 
 namespace RaffleShoppping.Services.RaffleEvents.ServiceBus
 {
-    public class ServiceBusSubscriber : BackgroundService
+    public class RaffleEventServiceBusReceiver : BackgroundService
     {
         private readonly IEventProcessor _eventProcessor;
         private readonly ServiceBusProcessor _processor;
 
-        public ServiceBusSubscriber(IEventProcessor eventProcessor, IOptions<AzureServiceBusSettings> azureServiceBusSettings)
+        public RaffleEventServiceBusReceiver(IEventProcessor eventProcessor, IOptions<AzureServiceBusSettings> azureServiceBusSettings)
         {
             _eventProcessor = eventProcessor;
             _processor = azureServiceBusSettings.Value.ServiceBusClient.CreateProcessor(azureServiceBusSettings.Value.QueueName, new ServiceBusProcessorOptions());

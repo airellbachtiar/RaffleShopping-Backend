@@ -36,7 +36,7 @@ var serviceBusQueueName = config.GetValue<string>("SERVICE_BUS_QUEUE_NAME");
 builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
 
 //Add MessageSubscriber
-builder.Services.AddHostedService<ServiceBusSubscriber>();
+builder.Services.AddHostedService<RaffleEventServiceBusReceiver>();
 
 builder.Services.Configure<AzureServiceBusSettings>(options =>
 {
