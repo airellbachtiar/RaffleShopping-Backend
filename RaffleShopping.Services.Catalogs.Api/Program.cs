@@ -43,7 +43,7 @@ builder.Services.Configure<CatalogDatabaseSettings>(options =>
 
 builder.Services.Configure((AzureServiceBusSettings options) =>
 {
-    options.ServiceBusClient = new Azure.Messaging.ServiceBus.ServiceBusClient(serviceBusConnectionString,
+    options.ServiceBusClient = new ServiceBusClient(serviceBusConnectionString,
         new ServiceBusClientOptions()
         {
             TransportType = ServiceBusTransportType.AmqpWebSockets
