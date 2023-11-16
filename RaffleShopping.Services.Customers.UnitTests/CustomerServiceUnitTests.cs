@@ -80,7 +80,7 @@ namespace RaffleShopping.Services.Customers.UnitTests
         }
 
         [Test]
-        public void Register()
+        public void Register_NewCustomerShouldBeAddedToDatabase_ReturnsTrue()
         {
             //Arrange
             var customer = new Customer
