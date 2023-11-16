@@ -4,9 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>0f1ea2df-885c-4aae-843f-1496a13933ef</UserSecretsId>
+    <UserSecretsId>b9936efa-4f7a-4680-9358-9c9ae1ad3d16</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RaffleShoppping.Services.RaffleEvents\RaffleShoppping.Services.RaffleEvents.csproj" />
+    <ProjectReference Include="..\RaffleShopping.Services.Catalogs\RaffleShopping.Services.Catalogs.csproj" />
   </ItemGroup>
 
 </Project>

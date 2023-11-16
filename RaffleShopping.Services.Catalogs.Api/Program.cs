@@ -1,8 +1,9 @@
-using Azure.Messaging.ServiceBus;
+using RaffleShopping.Services.Catalogs.Models;
+using RaffleShopping.Services.Catalogs.Repositories;
+using RaffleShopping.Services.Catalogs.Services;
 using DotNetEnv.Configuration;
-using RaffleShoppping.Services.RaffleEvents.EventProcessors;
-using RaffleShoppping.Services.RaffleEvents.Models;
-using RaffleShoppping.Services.RaffleEvents.ServiceBus;
+using Azure.Messaging.ServiceBus;
+using RaffleShopping.Services.Catalogs.ServiceBus;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -16,29 +17,31 @@ builder.Services.AddCors(options =>
                           policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                       });
 });
-// Add services to the container.
 
-builder.Services.AddControllers();
-
+// Configure Cosmos DB client
 //Load Env file
 DotNetEnv.Env.Load();
 
-//Add MongoDB & RabbitMQ
+//Add MongoDB
 var config = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .AddDotNetEnv()
     .Build();
 
+string connectionString = config.GetValue<string>("CONNECTION_STRING");
+string databaseName = config.GetValue<string>("DATABASE_NAME");
+string collectionName = config.GetValue<string>("COLLECTION_NAME");
 var serviceBusConnectionString = config.GetValue<string>("SERVICE_BUS_CONNECTION_STRING");
 var serviceBusQueueName = config.GetValue<string>("SERVICE_BUS_QUEUE_NAME");
 
-//Event Processor
-builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
+builder.Services.Configure<CatalogDatabaseSettings>(options =>
+{
+    options.ConnectionString = connectionString;
+    options.DatabaseName = databaseName;
+    options.CollectionName = collectionName;
+});
 
-//Add MessageSubscriber
-builder.Services.AddHostedService<RaffleEventServiceBusReceiver>();
-
-builder.Services.Configure<AzureServiceBusSettings>(options =>
+builder.Services.Configure((AzureServiceBusSettings options) =>
 {
     options.ServiceBusClient = new ServiceBusClient(serviceBusConnectionString,
         new ServiceBusClientOptions()
@@ -48,6 +51,12 @@ builder.Services.Configure<AzureServiceBusSettings>(options =>
     options.QueueName = serviceBusQueueName;
 });
 
+// Add services to the container.
+builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
+builder.Services.AddSingleton<ICatalogServices, CatalogServices>();
+builder.Services.AddSingleton<ICatalogServiceBusClient, CatalogServiceBusClient>();
+
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
