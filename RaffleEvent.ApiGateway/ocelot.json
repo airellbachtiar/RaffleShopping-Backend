@@ -1,0 +1,40 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/auth/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "raffleshopping",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/api/auth/{everything}",
+            "UpstreamHttpMethod": [ "POST" ]
+        },
+        {
+            "DownstreamPathTemplate": "api/catalogs/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "raffleshopping",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/api/catalogs/{everything}",
+            "UpstreamHttpMethod": [ "POST" ]
+        },
+        {
+            "DownstreamPathTemplate": "api/raffle-events/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "raffleshopping",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/gateway/api/raffle-events/{everything}",
+            "UpstreamHttpMethod": [ "GET" ]
+        }
+    ]
+}
