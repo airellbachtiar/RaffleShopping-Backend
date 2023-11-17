@@ -18,4 +18,5 @@ RUN dotnet publish "RaffleEvent.ApiGateway.csproj" -c Release -o /app/publish /p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY ./RaffleShopping.ApiGateway/ocelot ./
 ENTRYPOINT ["dotnet", "RaffleEvent.ApiGateway.dll"]

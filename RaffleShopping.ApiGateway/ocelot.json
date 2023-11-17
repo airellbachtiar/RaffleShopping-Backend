@@ -5,19 +5,20 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "raffleshopping",
+                    "Host": "raffleshopping-services-customers-api",
                     "Port": 80
                 }
             ],
             "UpstreamPathTemplate": "/gateway/api/auth/{everything}",
-            "UpstreamHttpMethod": [ "POST" ]
+            "UpstreamHttpMethod": [ "POST" ],
+            "UpstreamHost": "localhost"
         },
         {
             "DownstreamPathTemplate": "api/catalogs/{everything}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "raffleshopping",
+                    "Host": "raffleshopping-services-catalogs-api",
                     "Port": 80
                 }
             ],
@@ -29,7 +30,7 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "raffleshopping",
+                    "Host": "raffleshopping-services-raffleevents-api",
                     "Port": 80
                 }
             ],
