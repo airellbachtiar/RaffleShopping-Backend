@@ -1,25 +1,27 @@
 {
+    "GlobalConfiguration": {
+        "BaseUrl": "https://localhost:5000"
+    },
     "Routes": [
         {
             "DownstreamPathTemplate": "/api/auth/{everything}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "raffleshopping-services-customers-api",
-                    "Port": 80
+                    "Host": "localhost",
+                    "Port": 50000
                 }
             ],
             "UpstreamPathTemplate": "/gateway/api/auth/{everything}",
-            "UpstreamHttpMethod": [ "POST" ],
-            "UpstreamHost": "localhost"
+            "UpstreamHttpMethod": [ "POST" ]
         },
         {
             "DownstreamPathTemplate": "api/catalogs/{everything}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "raffleshopping-services-catalogs-api",
-                    "Port": 80
+                    "Host": "localhost",
+                    "Port": 50001
                 }
             ],
             "UpstreamPathTemplate": "/gateway/api/catalogs/{everything}",
@@ -30,8 +32,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "raffleshopping-services-raffleevents-api",
-                    "Port": 80
+                    "Host": "localhost",
+                    "Port": 50002
                 }
             ],
             "UpstreamPathTemplate": "/gateway/api/raffle-events/{everything}",
