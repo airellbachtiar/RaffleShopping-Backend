@@ -64,15 +64,18 @@ services:
     labels:
       kompose.service.type: LoadBalancer
 
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    volumes:
-      - ./ApiGateway:/etc/nginx/conf.d
+  raffleshopping-api-gateway:
+    image: airell/raffle-shopping-api-gateway:latest
+    build:
+      context: ./
+      dockerfile: RaffleShopping.ApiGateway/Dockerfile
     ports:
-      - '8010:3000'
+    - "5000:80"
+    volumes:
+    - ${PWD}/RaffleShopping.ApiGateway/ocelot:/app/ocelot
     networks:
-      - raffle-network
+    - raffle-network
 
 networks:
  raffle-network:
+   driver: bridge
