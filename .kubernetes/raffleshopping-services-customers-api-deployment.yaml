@@ -47,7 +47,6 @@ spec:
           name: raffleshopping-services-customers-api
           ports:
             - containerPort: 80
-              hostPort: 50000
               protocol: TCP
           resources: {}
       restartPolicy: Always
