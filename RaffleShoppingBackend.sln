@@ -42,8 +42,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", 
 		nginx.conf = nginx.conf
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.ApiGateway", "RaffleShopping.ApiGateway\RaffleShopping.ApiGateway.csproj", "{425115ED-1E26-4F7B-820B-A200AE6F36CE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,10 +84,6 @@ Global
 		{4C5FCBFD-4A92-4CA1-85A3-8F711E141517}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C5FCBFD-4A92-4CA1-85A3-8F711E141517}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C5FCBFD-4A92-4CA1-85A3-8F711E141517}.Release|Any CPU.Build.0 = Release|Any CPU
-		{425115ED-1E26-4F7B-820B-A200AE6F36CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{425115ED-1E26-4F7B-820B-A200AE6F36CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{425115ED-1E26-4F7B-820B-A200AE6F36CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{425115ED-1E26-4F7B-820B-A200AE6F36CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,7 +103,6 @@ Global
 		{49C4A4E3-C8FD-4AA3-B59F-87BA64439238} = {76F8EC42-8D72-40F2-AC47-A624A6C0808D}
 		{3EDC0025-DB73-4293-86A5-9AB3A0955C2D} = {A08EC4D3-DEAD-4307-BFE7-649E6DA10C72}
 		{4C5FCBFD-4A92-4CA1-85A3-8F711E141517} = {3EDC0025-DB73-4293-86A5-9AB3A0955C2D}
-		{425115ED-1E26-4F7B-820B-A200AE6F36CE} = {630E1EFC-27D6-47FF-A064-E2FCBC20C0FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C1F5EA1-0A46-4B25-8AD9-D4A01204D73B}
