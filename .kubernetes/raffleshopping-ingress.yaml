@@ -14,6 +14,13 @@ spec:
   - host: raffleshopping.com
     http:
       paths:
+      - path: /api/catalogs
+        pathType: Prefix
+        backend:
+          service:
+            name: raffleshopping-services-catalogs-api-tcp
+            port:
+              number: 80
       - path: /api/auth
         pathType: Prefix
         backend:
@@ -21,13 +28,13 @@ spec:
             name: raffleshopping-services-customers-api-tcp
             port:
               number: 80
-      - path: /
+      - path: /api/raffle-events
         pathType: Prefix
         backend:
           service:
             name: raffleshopping-services-raffleevents-api-tcp
             port:
-              number: 50001
+              number: 80
       - path: /
         pathType: Prefix
         backend:

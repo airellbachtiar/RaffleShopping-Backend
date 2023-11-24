@@ -11,8 +11,8 @@ metadata:
   name: raffleshopping-services-catalogs-api-tcp
 spec:
   ports:
-    - name: "50002"
-      port: 50002
+    - name: catalog
+      port: 80
       targetPort: 80
   selector:
     io.kompose.service: raffleshopping-services-catalogs-api
