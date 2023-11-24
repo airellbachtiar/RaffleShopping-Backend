@@ -10,15 +10,17 @@ namespace RaffleShopping.Services.Catalogs.UnitTests
     {
         private CatalogServices _catalogServices;
         private Mock<ICatalogRepository> _catalogRepositoryMock;
+        private Mock<ICatalogBlobStorage> _blobStorageMock;
 
         [SetUp]
         public void Setup()
         {
             // Create a mock object for the catalog repository
             _catalogRepositoryMock = new Mock<ICatalogRepository>();
+            _blobStorageMock = new Mock<ICatalogBlobStorage>();
 
             // Create an instance of the CatalogServices class
-            _catalogServices = new CatalogServices(_catalogRepositoryMock.Object);
+            _catalogServices = new CatalogServices(_catalogRepositoryMock.Object, _blobStorageMock.Object);
         }
 
         [Test]
