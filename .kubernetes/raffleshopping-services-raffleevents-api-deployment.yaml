@@ -23,11 +23,22 @@ spec:
         kompose.version: 1.31.2 (a92241f79)
       creationTimestamp: null
       labels:
-        io.kompose.network/raffleshopping-backend-default: "true"
+        io.kompose.network/raffleshopping-backend-raffle-network: "true"
         io.kompose.service: raffleshopping-services-raffleevents-api
     spec:
       containers:
-        - image: airell/raffle-shopping-raffle-event-service:latest
+        - env:
+            - name: SERVICE_BUS_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: raffle-events-secret
+                  key: SERVICE_BUS_CONNECTION_STRING
+            - name: SERVICE_BUS_QUEUE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: raffle-events-secret
+                  key: SERVICE_BUS_QUEUE_NAME
+          image: airell/raffle-shopping-raffle-event-service:latest
           name: raffleshopping-services-raffleevents-api
           ports:
             - containerPort: 80
