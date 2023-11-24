@@ -27,14 +27,5 @@ namespace RaffleShopping.Services.RaffleEvents.Api.Controllers
                 }
             };
         }
-
-        [HttpGet]
-        [Route("get-catalogs")]
-        public IActionResult GetCatalogsFromMessageBus()
-        {
-            RaffleEventService catalogService = new RaffleEventService();
-            _ = catalogService.ReceiveMessageAsync();
-            return Ok();
-        }
     }
 }

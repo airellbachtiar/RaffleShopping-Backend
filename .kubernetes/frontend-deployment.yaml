@@ -23,11 +23,47 @@ spec:
         kompose.version: 1.31.2 (a92241f79)
       creationTimestamp: null
       labels:
-        io.kompose.network/raffleshopping-backend-default: "true"
+        io.kompose.network/raffleshopping-backend-raffle-network: "true"
         io.kompose.service: frontend
     spec:
       containers:
-        - image: airell/raffle-shopping-frontend:latest
+        - env:
+          - name: REACT_APP_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secret
+                key: REACT_APP_API_KEY
+          - name: REACT_APP_AUTH_DOMAIN
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secret
+                key: REACT_APP_AUTH_DOMAIN
+          - name: REACT_APP_PROJECT_ID
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secret
+                key: REACT_APP_PROJECT_ID
+          - name: REACT_APP_STORAGE_BUCKET
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secret
+                key: REACT_APP_STORAGE_BUCKET
+          - name: REACT_APP_MESSAGING_SENDER_ID
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secret
+                key: REACT_APP_MESSAGING_SENDER_ID
+          - name: REACT_APP_APP_ID
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secret
+                key: REACT_APP_APP_ID
+          - name: REACT_APP_MEASUREMENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secret
+                key: REACT_APP_MEASUREMENT_ID
+          image: airell/raffle-shopping-frontend:latest
           name: frontend
           ports:
             - containerPort: 3000

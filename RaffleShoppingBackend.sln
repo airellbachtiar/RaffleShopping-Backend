@@ -35,7 +35,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.Cat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalogs", "Catalogs", "{3EDC0025-DB73-4293-86A5-9AB3A0955C2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaffleShopping.Services.Catalogs.UnitTests", "RaffleShopping.Services.Catalogs.UnitTests\RaffleShopping.Services.Catalogs.UnitTests.csproj", "{4C5FCBFD-4A92-4CA1-85A3-8F711E141517}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaffleShopping.Services.Catalogs.UnitTests", "RaffleShopping.Services.Catalogs.UnitTests\RaffleShopping.Services.Catalogs.UnitTests.csproj", "{4C5FCBFD-4A92-4CA1-85A3-8F711E141517}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{630E1EFC-27D6-47FF-A064-E2FCBC20C0FD}"
+	ProjectSection(SolutionItems) = preProject
+		nginx.conf = nginx.conf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

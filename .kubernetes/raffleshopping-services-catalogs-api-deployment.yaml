@@ -7,13 +7,13 @@ metadata:
     kompose.version: 1.31.2 (a92241f79)
   creationTimestamp: null
   labels:
-    io.kompose.service: raffleshopping-services-customers-api
-  name: raffleshopping-services-customers-api
+    io.kompose.service: raffleshopping-services-catalogs-api
+  name: raffleshopping-services-catalogs-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: raffleshopping-services-customers-api
+      io.kompose.service: raffleshopping-services-catalogs-api
   strategy: {}
   template:
     metadata:
@@ -24,27 +24,37 @@ spec:
       creationTimestamp: null
       labels:
         io.kompose.network/raffleshopping-backend-raffle-network: "true"
-        io.kompose.service: raffleshopping-services-customers-api
+        io.kompose.service: raffleshopping-services-catalogs-api
     spec:
       containers:
         - env:
             - name: COLLECTION_NAME
               valueFrom:
                 secretKeyRef:
-                  name: customers-database-secret
+                  name: catalogs-secret
                   key: COLLECTION_NAME
             - name: CONNECTION_STRING
               valueFrom:
                 secretKeyRef:
-                  name: customers-database-secret
+                  name: catalogs-secret
                   key: CONNECTION_STRING
             - name: DATABASE_NAME
               valueFrom:
                 secretKeyRef:
-                  name: customers-database-secret
+                  name: catalogs-secret
                   key: DATABASE_NAME
-          image: airell/raffle-shopping-customer-service:latest
-          name: raffleshopping-services-customers-api
+            - name: SERVICE_BUS_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: catalogs-secret
+                  key: SERVICE_BUS_CONNECTION_STRING
+            - name: SERVICE_BUS_QUEUE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: catalogs-secret
+                  key: SERVICE_BUS_QUEUE_NAME
+          image: airell/raffle-shopping-catalog-service:latest
+          name: raffleshopping-services-catalogs-api
           ports:
             - containerPort: 80
               protocol: TCP

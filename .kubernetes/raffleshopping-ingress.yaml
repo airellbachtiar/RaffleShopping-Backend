@@ -7,25 +7,34 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
     nginx.ingress.kubernetes.io/cors-allow-origin: "*"
     nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
   - host: raffleshopping.com
     http:
       paths:
-      - path: /
+      - path: /api/catalogs
+        pathType: Prefix
+        backend:
+          service:
+            name: raffleshopping-services-catalogs-api-tcp
+            port:
+              number: 80
+      - path: /api/auth
         pathType: Prefix
         backend:
           service:
             name: raffleshopping-services-customers-api-tcp
             port:
-              number: 50000
-      - path: /
+              number: 80
+      - path: /api/raffle-events
         pathType: Prefix
         backend:
           service:
             name: raffleshopping-services-raffleevents-api-tcp
             port:
-              number: 50001
+              number: 80
       - path: /
         pathType: Prefix
         backend:
