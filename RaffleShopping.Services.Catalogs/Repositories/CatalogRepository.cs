@@ -25,5 +25,10 @@ namespace RaffleShopping.Services.Catalogs.Repositories
         {
             _catalogCollection.InsertOneAsync(catalog);
         }
+
+        public Task<List<Catalog>> GetAllCatalogsAsync()
+        {
+            return _catalogCollection.Aggregate().ToListAsync();
+        }
     }
 }

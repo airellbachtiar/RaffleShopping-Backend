@@ -33,12 +33,22 @@ string databaseName = config.GetValue<string>("DATABASE_NAME");
 string collectionName = config.GetValue<string>("COLLECTION_NAME");
 var serviceBusConnectionString = config.GetValue<string>("SERVICE_BUS_CONNECTION_STRING");
 var serviceBusQueueName = config.GetValue<string>("SERVICE_BUS_QUEUE_NAME");
+string blobStorageConnectionString = config.GetValue<string>("BLOB_STORAGE_CONNECTION_STRING");
+string blobStorageContainerName = config.GetValue<string>("BLOB_STORAGE_CONTAINER_NAME");
+string blobStorageAccountName = config.GetValue<string>("BLOB_STORAGE_ACCOUNT_NAME");
 
 builder.Services.Configure<CatalogDatabaseSettings>(options =>
 {
     options.ConnectionString = connectionString;
     options.DatabaseName = databaseName;
     options.CollectionName = collectionName;
+});
+
+builder.Services.Configure<CatalogBlobStorageSettings>(options =>
+{
+    options.ConnectionString = blobStorageConnectionString;
+    options.ContainerName = blobStorageContainerName;
+    options.AccountName = blobStorageAccountName;
 });
 
 builder.Services.Configure((AzureServiceBusSettings options) =>
@@ -53,6 +63,7 @@ builder.Services.Configure((AzureServiceBusSettings options) =>
 
 // Add services to the container.
 builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
+builder.Services.AddSingleton<ICatalogBlobStorage, CatalogBlobStorage>();
 builder.Services.AddSingleton<ICatalogServices, CatalogServices>();
 builder.Services.AddSingleton<ICatalogServiceBusClient, CatalogServiceBusClient>();
 
