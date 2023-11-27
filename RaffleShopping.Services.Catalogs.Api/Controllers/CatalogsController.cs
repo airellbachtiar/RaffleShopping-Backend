@@ -32,5 +32,18 @@ namespace RaffleShopping.Services.Catalogs.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        public List<GetCatalogDto> GetAllCatalogs()
+        {
+            try
+            {
+                return _catalogServices.GetAllCatalogs();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

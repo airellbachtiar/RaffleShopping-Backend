@@ -31,5 +31,20 @@ namespace RaffleShopping.Services.Catalogs.Services
 
             _catalogRepository.AddCatalogAsync(catalog);
         }
+
+        public List<GetCatalogDto> GetAllCatalogs()
+        {
+            List<Catalog> catalogs = _catalogRepository.GetAllCatalogsAsync().Result;
+
+            List<GetCatalogDto> catalogDtos = catalogs.Select(catalog => new GetCatalogDto
+            {
+                Title = catalog.Title,
+                _id = catalog._id,
+                Price = catalog.Price,
+                PictureUrl = _catalogBlobStorage.GetImageURL(catalog.Picture)
+            }).ToList();
+
+            return catalogDtos;
+        }
     }
 }

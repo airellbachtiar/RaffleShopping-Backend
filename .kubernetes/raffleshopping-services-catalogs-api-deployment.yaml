@@ -53,6 +53,21 @@ spec:
                 secretKeyRef:
                   name: catalogs-secret
                   key: SERVICE_BUS_QUEUE_NAME
+            - name: BLOB_STORAGE_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: catalogs-secret
+                  key: BLOB_STORAGE_CONNECTION_STRING
+            - name: BLOB_STORAGE_CONTAINER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: catalogs-secret
+                  key: BLOB_STORAGE_CONTAINER_NAME
+            - name: BLOB_STORAGE_ACCOUNT_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: catalogs-secret
+                  key: BLOB_STORAGE_ACCOUNT_NAME
           image: airell/raffle-shopping-catalog-service:latest
           name: raffleshopping-services-catalogs-api
           ports:
