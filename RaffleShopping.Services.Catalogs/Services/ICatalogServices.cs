@@ -5,7 +5,7 @@ namespace RaffleShopping.Services.Catalogs.Services
 {
     public interface ICatalogServices
     {
-        void AddCatalog(AddCatalogDto addCatalogDto);
-        List<GetCatalogDto> GetAllCatalogs();
+        Task AddCatalogAsync(AddCatalogDto addCatalogDto);
+        Task<List<GetCatalogDto>> GetAllCatalogsAsync();
     }
 }

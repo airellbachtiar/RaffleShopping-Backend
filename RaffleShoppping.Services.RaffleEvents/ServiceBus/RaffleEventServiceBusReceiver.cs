@@ -33,7 +33,7 @@ namespace RaffleShoppping.Services.RaffleEvents.ServiceBus
             }
         }
 
-        Task ErrorHandler(ProcessErrorEventArgs args)
+        private Task ErrorHandler(ProcessErrorEventArgs args)
         {
             return Task.CompletedTask;
         }
@@ -61,7 +61,7 @@ namespace RaffleShoppping.Services.RaffleEvents.ServiceBus
                     await _processor.StopProcessingAsync();
                     await _processor.DisposeAsync();
                 }
-                catch (Exception)
+                catch
                 {
                     throw;
                 }

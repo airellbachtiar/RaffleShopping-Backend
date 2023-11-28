@@ -7,7 +7,7 @@ namespace RaffleShopping.Services.Customers.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private IMongoCollection<Customer> _customerCollection;
+        private readonly IMongoCollection<Customer> _customerCollection;
 
         public CustomerRepository(IOptions<CustomerDatabaseSettings> settings)
         {

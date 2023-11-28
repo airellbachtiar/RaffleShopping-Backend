@@ -23,26 +23,26 @@ namespace RaffleShopping.Services.Catalogs.Api.Controllers
         {
             try
             {
-                _catalogServices.AddCatalog(addCatalogDto);
-                _serviceBusClient.AddCatalog(addCatalogDto);
+                _catalogServices.AddCatalogAsync(addCatalogDto);
+                _serviceBusClient.AddCatalogAsync(addCatalogDto);
                 return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
             }
         }
 
         [HttpGet]
-        public List<GetCatalogDto> GetAllCatalogs()
+        public async Task<ActionResult<List<GetCatalogDto>>> GetAllCatalogsAsync()
         {
             try
             {
-                return _catalogServices.GetAllCatalogs();
+                return Ok(await _catalogServices.GetAllCatalogsAsync());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
             }
         }
     }

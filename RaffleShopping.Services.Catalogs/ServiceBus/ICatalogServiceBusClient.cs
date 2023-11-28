@@ -4,6 +4,6 @@ namespace RaffleShopping.Services.Catalogs.ServiceBus
 {
     public interface ICatalogServiceBusClient
     {
-        void AddCatalog(AddCatalogDto addCatalogDto);
+        Task AddCatalogAsync(AddCatalogDto addCatalogDto);
     }
 }

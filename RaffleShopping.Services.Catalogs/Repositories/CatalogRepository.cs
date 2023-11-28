@@ -7,7 +7,7 @@ namespace RaffleShopping.Services.Catalogs.Repositories
 {
     public class CatalogRepository : ICatalogRepository
     {
-        private IMongoCollection<Catalog> _catalogCollection;
+        private readonly IMongoCollection<Catalog> _catalogCollection;
 
         public CatalogRepository(IOptions<CatalogDatabaseSettings> settings)
         {

@@ -17,7 +17,7 @@ namespace RaffleShopping.Services.Catalogs.Services
             _catalogBlobStorage = catalogBlobStorage;
         }
 
-        public void AddCatalog(AddCatalogDto addCatalogDto)
+        public Task AddCatalogAsync(AddCatalogDto addCatalogDto)
         {
             string blobName = _catalogBlobStorage.UploadImageToAzureBlobAsync(addCatalogDto.Picture).Result;
 

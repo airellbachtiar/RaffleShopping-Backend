@@ -15,13 +15,13 @@ namespace RaffleShopping.Services.Catalogs.ServiceBus
             _serviceBusSender = azureServiceBusSettings.Value.ServiceBusClient.CreateSender(azureServiceBusSettings.Value.QueueName);
         }
 
-        public void AddCatalog(AddCatalogDto addCatalogDto)
+        public async Task AddCatalogAsync(AddCatalogDto addCatalogDto)
         {
             string messageBody = JsonSerializer.Serialize(addCatalogDto);
-            QueueMessage(messageBody);
+            QueueMessageAsync(messageBody);
         }
 
-        private async void QueueMessage(string messageBody)
+        private async Task QueueMessageAsync(string messageBody)
         {
             ServiceBusMessage message = new ServiceBusMessage(Encoding.UTF8.GetBytes(messageBody));
             await _serviceBusSender.SendMessageAsync(message);

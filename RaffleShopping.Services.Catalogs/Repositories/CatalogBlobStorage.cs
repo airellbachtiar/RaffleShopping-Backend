@@ -6,9 +6,9 @@ namespace RaffleShopping.Services.Catalogs.Repositories
 {
     public class CatalogBlobStorage : ICatalogBlobStorage
     {
-        private BlobContainerClient _containerClient;
-        private string _accountName;
-        private string _containerName;
+        private readonly BlobContainerClient _containerClient;
+        private readonly string _accountName;
+        private readonly string _containerName;
 
         public CatalogBlobStorage(IOptions<CatalogBlobStorageSettings> setttings)
         {
@@ -39,7 +39,7 @@ namespace RaffleShopping.Services.Catalogs.Repositories
 
                 return blobName;
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
