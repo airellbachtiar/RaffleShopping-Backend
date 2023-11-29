@@ -11,7 +11,7 @@ metadata:
   name: raffleshopping-services-customers-api-tcp
 spec:
   ports:
-    - name: customer
+    - name: raffleshopping-services-customers-api
       port: 80
       targetPort: 80
   selector:
