@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RaffleShopping.Services.Customers.Dtos;
 using RaffleShopping.Services.Customers.Features.HashingString;
 using RaffleShopping.Services.Customers.Models;
@@ -17,9 +18,10 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginModel loginModel)
+        [Authorize(Policy = "Customer")]
+        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            if (_customerService.Login(loginModel))
+            if (await _customerService.LoginAsync(loginModel))
             {
                 // Authentication successful
                 return Ok(new { Message = "Login successful" });
@@ -38,7 +40,7 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
         {
             try
             {
-                Customer existingUser = _customerService.GetCustomerByEmail(customerDto.Email);
+                Customer existingUser = await _customerService.GetCustomerByEmailAsync(customerDto.Email);
                 if (existingUser != null)
                 {
                     return BadRequest("User with this email already exists");
@@ -47,10 +49,11 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
                 Customer customer = new Customer()
                 {
                     Email = customerDto.Email,
-                    Password = HashString.Hash(customerDto.Password)
+                    Password = customerDto.Password,
+                    Role = customerDto.Role,
                 };
 
-                _customerService.RegisterCustomer(customer);
+                await _customerService.RegisterCustomerAsync(customer);
 
                 return Ok("User registration successful");
             }

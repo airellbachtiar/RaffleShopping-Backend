@@ -4,7 +4,7 @@ namespace RaffleShopping.Services.Customers.Repositories
 {
     public interface ICustomerRepository
     {
-        void AddUserAsync(Customer customer);
-        Customer GetUserByEmailAsync(string email);
+        Task AddUserAsync(Customer customer);
+        Task<Customer> GetUserByEmailAsync(string email);
     }
 }

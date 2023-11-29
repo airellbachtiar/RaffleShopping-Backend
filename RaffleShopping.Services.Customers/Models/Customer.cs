@@ -7,7 +7,6 @@ namespace RaffleShopping.Services.Customers.Models
     public class Customer
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
 
         [Required]
@@ -15,5 +14,6 @@ namespace RaffleShopping.Services.Customers.Models
 
         public string Password { get; set; }
 
+        public string Role { get; set; }
     }
 }
