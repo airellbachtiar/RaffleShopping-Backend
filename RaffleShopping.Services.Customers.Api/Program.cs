@@ -33,6 +33,11 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("EventOrganizer", policy => policy.RequireClaim("role", "EVENTORGANIZER"));
     options.AddPolicy("Customer", policy => policy.RequireClaim("role", "CUSTOMER"));
+    options.AddPolicy("Admin", policy => policy.RequireClaim("role", "ADMIN"));
+    options.AddPolicy("Public", policy =>
+    {
+        policy.RequireClaim("role", "ADMIN", "CUSTOMER", "EVENTORGANIZER");
+    });
 });
 
 //Add MongoDB

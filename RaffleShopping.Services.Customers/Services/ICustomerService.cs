@@ -1,4 +1,5 @@
-﻿using RaffleShopping.Services.Customers.Models;
+﻿using RaffleShopping.Services.Customers.Dtos;
+using RaffleShopping.Services.Customers.Models;
 
 namespace RaffleShopping.Services.Customers.Services
 {
@@ -6,6 +7,6 @@ namespace RaffleShopping.Services.Customers.Services
     {
         Task<Customer> GetCustomerByEmailAsync(string email);
         Task<bool> LoginAsync(LoginModel loginModel);
-        Task RegisterCustomerAsync(Customer customer);
+        Task RegisterCustomerAsync(SignUpCustomerDto customerDto);
     }
 }

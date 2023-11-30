@@ -10,7 +10,6 @@ namespace RaffleShopping.Services.Customers.UnitTests
     public class CustomerServiceUnitTests
     {
         private Mock<ICustomerRepository> _customerRepository;
-        private Mock<FirebaseAuth> _firebaseAuth;
         private CustomerService _customerService;
 
         public CustomerServiceUnitTests() 
@@ -24,7 +23,7 @@ namespace RaffleShopping.Services.Customers.UnitTests
             var loginCredentials = new Customer
             {
                 Email = "ai.hoshino@email.com",
-                Password = HashString.Hash("password")
+                //Password = HashString.Hash("password")
             };
 
             _customerRepository.Setup(c => c.GetUserByEmailAsync(loginCredentials.Email)).Returns(Task.FromResult(loginCredentials));

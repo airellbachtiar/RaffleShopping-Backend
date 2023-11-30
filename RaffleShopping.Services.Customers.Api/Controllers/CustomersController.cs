@@ -46,14 +46,7 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
                     return BadRequest("User with this email already exists");
                 }
 
-                Customer customer = new Customer()
-                {
-                    Email = customerDto.Email,
-                    Password = customerDto.Password,
-                    Role = customerDto.Role,
-                };
-
-                await _customerService.RegisterCustomerAsync(customer);
+                await _customerService.RegisterCustomerAsync(customerDto);
 
                 return Ok("User registration successful");
             }

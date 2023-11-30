@@ -1,5 +1,6 @@
 ﻿using FirebaseAdmin.Auth;
 using Microsoft.Azure.Cosmos;
+using RaffleShopping.Services.Customers.Dtos;
 using RaffleShopping.Services.Customers.Features.HashingString;
 using RaffleShopping.Services.Customers.Models;
 using RaffleShopping.Services.Customers.Repositories;
@@ -27,18 +28,23 @@ namespace RaffleShopping.Services.Customers.Services
             return await _customerRepository.GetUserByEmailAsync(email);
         }
 
-        public async Task RegisterCustomerAsync(Customer customer)
+        public async Task RegisterCustomerAsync(SignUpCustomerDto customerDto)
         {
             UserRecordArgs args = new UserRecordArgs()
             {
-                Email = customer.Email,
-                Password = customer.Password
+                Email = customerDto.Email,
+                Password = customerDto.Password
             };
             UserRecord userRecord = await FirebaseAuth.DefaultInstance.CreateUserAsync(args);
 
             if(userRecord != null)
             {
-                customer._id = userRecord.Uid;
+                Customer customer = new Customer()
+                {
+                    _id = userRecord.Uid,
+                    Email = userRecord.Email,
+                    Role = customerDto.Role
+                };
                 await _customerRepository.AddUserAsync(customer);
                 var claims = new Dictionary<string, object>()
                 {
