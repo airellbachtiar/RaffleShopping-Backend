@@ -8,5 +8,6 @@ namespace RaffleShopping.Services.Customers.Services
         Task<Customer> GetCustomerByEmailAsync(string email);
         Task<bool> LoginAsync(LoginModel loginModel);
         Task RegisterCustomerAsync(SignUpCustomerDto customerDto);
+        Task DeleteCustomerAsync(string customerId);
     }
 }

@@ -31,5 +31,10 @@ namespace RaffleShopping.Services.Customers.Repositories
             Customer user = await _customerCollection.Find(u => u.Email == email).FirstOrDefaultAsync();
             return user;
         }
+
+        public async Task DeleteUserAsync(string customerId)
+        {
+            await _customerCollection.DeleteOneAsync(customerId);
+        }
     }
 }

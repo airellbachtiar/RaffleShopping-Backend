@@ -53,5 +53,11 @@ namespace RaffleShopping.Services.Customers.Services
                 await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(userRecord.Uid, claims);
             }
         }
+
+        public async Task DeleteCustomerAsync(string customerId)
+        {
+            await FirebaseAuth.DefaultInstance.DeleteUserAsync(customerId);
+            await _customerRepository.DeleteUserAsync(customerId);
+        }
     }
 }

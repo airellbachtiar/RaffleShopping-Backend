@@ -6,5 +6,6 @@ namespace RaffleShopping.Services.Customers.Repositories
     {
         Task AddUserAsync(Customer customer);
         Task<Customer> GetUserByEmailAsync(string email);
+        Task DeleteUserAsync(string customerId);
     }
 }

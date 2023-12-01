@@ -36,7 +36,7 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
 
         [HttpPost]
         [Route("signup")]
-        public async Task<IActionResult> RegisterUser([FromBody] SignUpCustomerDto customerDto)
+        public async Task<IActionResult> RegisterCustomer([FromBody] SignUpCustomerDto customerDto)
         {
             try
             {
@@ -49,6 +49,22 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
                 await _customerService.RegisterCustomerAsync(customerDto);
 
                 return Ok("User registration successful");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("delete")]
+        [Authorize(Policy = "Public")]
+        public async Task<IActionResult> DeleteCustomer([FromBody] string customerId)
+        {
+            try
+            {
+                await _customerService.DeleteCustomerAsync(customerId);
+                return Ok();
             }
             catch (Exception ex)
             {
