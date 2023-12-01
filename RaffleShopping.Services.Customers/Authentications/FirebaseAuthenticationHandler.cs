@@ -68,6 +68,7 @@ namespace RaffleShopping.Services.Customers.Authentications
             return new List<Claim>
             {
                 new Claim("role", claims["role"].ToString()),
+                new Claim("user_id", claims["user_id"].ToString())
             };
         }
     }

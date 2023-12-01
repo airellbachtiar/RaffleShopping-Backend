@@ -18,6 +18,7 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
         }
 
         [HttpPost("login")]
+        [Authorize(Policy = "Public")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
             try
@@ -62,13 +63,13 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("delete")]
-        public async Task<IActionResult> DeleteCustomer([FromBody] string customerId)
+        [HttpDelete]
+        [Authorize(Policy = "Public")]
+        public async Task<IActionResult> DeleteCustomer()
         {
             try
             {
-                await _customerService.DeleteCustomerAsync(customerId);
+                await _customerService.DeleteCustomerAsync(User.FindFirst("uid")?.Value);
                 return Ok();
             }
             catch (Exception ex)
