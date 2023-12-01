@@ -18,18 +18,24 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
         }
 
         [HttpPost("login")]
-        [Authorize(Policy = "Customer")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            if (await _customerService.LoginAsync(loginModel))
+            try
             {
-                // Authentication successful
-                return Ok(new { Message = "Login successful" });
+                if (await _customerService.LoginAsync(loginModel))
+                {
+                    // Authentication successful
+                    return Ok(new { Message = "Login successful" });
+                }
+                else
+                {
+                    // Authentication failed
+                    return Unauthorized(new { Message = "Invalid credentials" });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Authentication failed
-                return Unauthorized(new { Message = "Invalid credentials" });
+                return BadRequest(ex.Message);
             }
 
         }
@@ -58,7 +64,6 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
 
         [HttpPost]
         [Route("delete")]
-        [Authorize(Policy = "Public")]
         public async Task<IActionResult> DeleteCustomer([FromBody] string customerId)
         {
             try

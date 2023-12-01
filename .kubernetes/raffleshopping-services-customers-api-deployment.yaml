@@ -43,6 +43,11 @@ spec:
                 secretKeyRef:
                   name: customers-database-secret
                   key: DATABASE_NAME
+            - name: FIREBASE_CONFIG_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: customers-database-secret
+                  key: FIREBASE_CONFIG_PATH
           image: airell/raffle-shopping-customer-service:latest
           name: raffleshopping-services-customers-api
           ports:

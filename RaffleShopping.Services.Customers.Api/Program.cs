@@ -61,7 +61,7 @@ builder.Services.Configure<CustomerDatabaseSettings>(options =>
 string firebaseConfigJson = Environment.GetEnvironmentVariable("FIREBASE_CONFIG_PATH");
 builder.Services.AddSingleton(FirebaseApp.Create(new AppOptions()
 {
-    Credential = GoogleCredential.FromFile(firebaseConfigJson)
+    Credential = GoogleCredential.FromJson(firebaseConfigJson)
 }));
 
 // Add services to the container.

@@ -22,7 +22,7 @@ spec:
             name: raffleshopping-services-catalogs-api-tcp
             port:
               number: 80
-      - path: /api/auth/
+      - path: /api/auth
         pathType: Prefix
         backend:
           service:
