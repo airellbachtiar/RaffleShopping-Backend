@@ -64,3 +64,14 @@ And make sure to add raffleshopping.com to localhost (127.0.0.1) by following th
     - If requested, open the file with Notepad.
     - Under: 127.0.0.1 localhost add 127.0.0.1 raffleshopping.com
     - Press File > Save to save your changes.
+
+### Monitoring
+To monitor the application, there is a folder called '.monitoring'. In that folder do:
+```bash
+docker compose up
+```
+After you run that command, you can naviate to localhost:30000 where it will ask you username and password. Both should be 'admin' and you can access Grafana.
+To see the metrics, you can go to Hamburger Menu > Dashboard > Cadvisor Exporter or Node Exporter Full. If you do not have these dashboards, you can import a new dashboard using the following code:
+- 14282: Cadvisor exporter
+- 1860: Node Exporter Full and K8s containers
+And use Prometheus as the Data Source.

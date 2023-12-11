@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: raffleshopping-services-raffleevents-api-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: raffleshopping-services-raffleevents-api
+  minReplicas: 1
+  maxReplicas: 15
+  targetCPUUtilizationPercentage: 50

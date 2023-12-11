@@ -43,6 +43,12 @@ spec:
           ports:
             - containerPort: 80
               protocol: TCP
-          resources: {}
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 128Mi
       restartPolicy: Always
 status: {}
