@@ -1,0 +1,32 @@
+import http from 'k6/http';
+import { check } from 'k6';
+
+export const options = {
+    stages: [
+        { duration: "5s", target: 5 },
+        { duration: "10s", target: 100 },
+        { duration: "10s", target: 1000 },
+        { duration: "10s", target: 2000 },
+    ]
+  };
+
+export default function () {
+  const url = 'http://raffleshopping.com/api/auth/login';
+  const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjNhM2JkODk4ZGE1MGE4OWViOWUxY2YwYjdhN2VmZTM1OTNkNDEwNjgiLCJ0eXAiOiJKV1QifQ.eyJyb2xlIjoiQURNSU4iLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcmFmZmxlLXNob3BwaW5nLWY4NWU2IiwiYXVkIjoicmFmZmxlLXNob3BwaW5nLWY4NWU2IiwiYXV0aF90aW1lIjoxNzAyMDMwOTc2LCJ1c2VyX2lkIjoiUE0ydWl5ajRJWU16WTdQYmU2YkhGbkVHNjlXMiIsInN1YiI6IlBNMnVpeWo0SVlNelk3UGJlNmJIRm5FRzY5VzIiLCJpYXQiOjE3MDIwMzA5NzYsImV4cCI6MTcwMjAzNDU3NiwiZW1haWwiOiJhaXJlbGwuYmFjaHRpYXJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFpcmVsbC5iYWNodGlhckBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.T1RFB66VC5FKbQgnuiLZLoRUKxu428ARM1of8goe8MshFgMmL-T2jxX7ydORleG7WNthBMKtZlmH_mKYVjHHqvj9gtPK-4xdpLe1wHPBb9LX_xCRj6DENdf-MzfYIA1vxSLxnfYrSo5aJV1lJCiczPWbDBBhArw7kua6AVifuuRrMSGHF4RZDhjhr-xbzjL5wpZpVGSX3_f65zXHQaTJCMb515Xc6Tns3W2830dUVs-p_ln8jdHiZ1SPnzM17uW1Q4KOsc9Pw9cb3rW6iYU3XPDuHyQJdCTj8V57xG4CHZa66-B9lcHGgHp_nxz69HHXOSKCoPOTMN2_P5V3JdIFLQ'
+  
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
+
+  const payload = JSON.stringify({
+    email: 'airell.bachtiar@gmail.com',
+    password: 'test',
+  });
+
+  const res = http.post(url, payload, { headers: headers });
+
+  check(res, {
+    'status is 200': (r) => r.status === 200,
+  });
+}

@@ -1,7 +1,4 @@
-﻿using Azure;
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using RaffleShopping.Services.Catalogs.Dtos;
+﻿using RaffleShopping.Services.Catalogs.Dtos;
 using RaffleShopping.Services.Catalogs.Models;
 using RaffleShopping.Services.Catalogs.Repositories;
 
@@ -17,7 +14,7 @@ namespace RaffleShopping.Services.Catalogs.Services
             _catalogBlobStorage = catalogBlobStorage;
         }
 
-        public Task AddCatalogAsync(AddCatalogDto addCatalogDto)
+        public async Task AddCatalogAsync(AddCatalogDto addCatalogDto)
         {
             string blobName = _catalogBlobStorage.UploadImageToAzureBlobAsync(addCatalogDto.Picture).Result;
 
@@ -32,9 +29,9 @@ namespace RaffleShopping.Services.Catalogs.Services
             _catalogRepository.AddCatalogAsync(catalog);
         }
 
-        public List<GetCatalogDto> GetAllCatalogs()
+        public async Task<List<GetCatalogDto>> GetAllCatalogsAsync()
         {
-            List<Catalog> catalogs = _catalogRepository.GetAllCatalogsAsync().Result;
+            List<Catalog> catalogs = await _catalogRepository.GetAllCatalogsAsync();
 
             List<GetCatalogDto> catalogDtos = catalogs.Select(catalog => new GetCatalogDto
             {

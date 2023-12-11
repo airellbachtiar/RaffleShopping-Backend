@@ -11,11 +11,11 @@ metadata:
   name: raffleshopping-services-catalogs-api-tcp
 spec:
   ports:
-    - name: catalog
+    - name: raffleshopping-services-catalogs-api
       port: 80
       targetPort: 80
   selector:
     io.kompose.service: raffleshopping-services-catalogs-api
-  type: LoadBalancer
+  type: ClusterIP
 status:
   loadBalancer: {}

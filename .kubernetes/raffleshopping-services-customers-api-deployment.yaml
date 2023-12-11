@@ -43,11 +43,22 @@ spec:
                 secretKeyRef:
                   name: customers-database-secret
                   key: DATABASE_NAME
+            - name: FIREBASE_CONFIG_PATH
+              valueFrom:
+                secretKeyRef:
+                  name: customers-database-secret
+                  key: FIREBASE_CONFIG_PATH
           image: airell/raffle-shopping-customer-service:latest
           name: raffleshopping-services-customers-api
           ports:
             - containerPort: 80
               protocol: TCP
-          resources: {}
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 128Mi
       restartPolicy: Always
 status: {}

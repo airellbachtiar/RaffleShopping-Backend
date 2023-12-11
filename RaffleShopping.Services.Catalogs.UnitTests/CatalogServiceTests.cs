@@ -35,7 +35,7 @@ namespace RaffleShopping.Services.Catalogs.UnitTests
             };
 
             // Act
-            _catalogServices.AddCatalog(addCatalogDto);
+            _catalogServices.AddCatalogAsync(addCatalogDto);
 
             // Assert
             _catalogRepositoryMock.Verify(x => x.AddCatalogAsync(It.IsAny<Catalog>()), Times.Once);

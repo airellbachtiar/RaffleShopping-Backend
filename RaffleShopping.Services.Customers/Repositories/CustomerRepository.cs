@@ -21,15 +21,20 @@ namespace RaffleShopping.Services.Customers.Repositories
             _customerCollection = mongoDatabase.GetCollection <Customer>(settings.Value.CollectionName);
         }
 
-        public void AddUserAsync(Customer customer)
+        public async Task AddUserAsync(Customer customer)
         {
-            _customerCollection.InsertOneAsync(customer);
+            await _customerCollection.InsertOneAsync(customer);
         }
 
-        public Customer GetUserByEmailAsync(string email)
+        public async Task<Customer> GetUserByEmailAsync(string email)
         {
-            Customer user = _customerCollection.Find(u => u.Email == email).FirstOrDefaultAsync().Result;
+            Customer user = await _customerCollection.Find(u => u.Email == email).FirstOrDefaultAsync();
             return user;
+        }
+
+        public async Task DeleteUserAsync(string customerId)
+        {
+            await _customerCollection.DeleteOneAsync(customerId);
         }
     }
 }

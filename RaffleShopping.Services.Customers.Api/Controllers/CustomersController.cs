@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RaffleShopping.Services.Customers.Dtos;
 using RaffleShopping.Services.Customers.Features.HashingString;
 using RaffleShopping.Services.Customers.Models;
@@ -17,42 +18,59 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginModel loginModel)
+        [Authorize(Policy = "Public")]
+        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            if (_customerService.Login(loginModel))
+            try
             {
-                // Authentication successful
-                return Ok(new { Message = "Login successful" });
+                if (await _customerService.LoginAsync(loginModel))
+                {
+                    // Authentication successful
+                    return Ok(new { Message = "Login successful" });
+                }
+                else
+                {
+                    // Authentication failed
+                    return Unauthorized(new { Message = "Invalid credentials" });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Authentication failed
-                return Unauthorized(new { Message = "Invalid credentials" });
+                return BadRequest(ex.Message);
             }
 
         }
 
         [HttpPost]
         [Route("signup")]
-        public async Task<IActionResult> RegisterUser([FromBody] SignUpCustomerDto customerDto)
+        public async Task<IActionResult> RegisterCustomer([FromBody] SignUpCustomerDto customerDto)
         {
             try
             {
-                Customer existingUser = _customerService.GetCustomerByEmail(customerDto.Email);
+                Customer existingUser = await _customerService.GetCustomerByEmailAsync(customerDto.Email);
                 if (existingUser != null)
                 {
                     return BadRequest("User with this email already exists");
                 }
 
-                Customer customer = new Customer()
-                {
-                    Email = customerDto.Email,
-                    Password = HashString.Hash(customerDto.Password)
-                };
-
-                _customerService.RegisterCustomer(customer);
+                await _customerService.RegisterCustomerAsync(customerDto);
 
                 return Ok("User registration successful");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Authorize(Policy = "Public")]
+        public async Task<IActionResult> DeleteCustomer()
+        {
+            try
+            {
+                await _customerService.DeleteCustomerAsync(User.FindFirst("uid")?.Value);
+                return Ok();
             }
             catch (Exception ex)
             {

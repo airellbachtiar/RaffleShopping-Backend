@@ -1,4 +1,7 @@
-﻿using RaffleShopping.Services.Customers.Features.HashingString;
+﻿using FirebaseAdmin.Auth;
+using Microsoft.Azure.Cosmos;
+using RaffleShopping.Services.Customers.Dtos;
+using RaffleShopping.Services.Customers.Features.HashingString;
 using RaffleShopping.Services.Customers.Models;
 using RaffleShopping.Services.Customers.Repositories;
 
@@ -12,23 +15,49 @@ namespace RaffleShopping.Services.Customers.Services
             _customerRepository = customerRepository;
         }
 
-        public bool Login(LoginModel loginModel)
+        public async Task<bool> LoginAsync(LoginModel loginModel)
         {
-            Customer customer = _customerRepository.GetUserByEmailAsync(loginModel.Email);
-            string password = HashString.Hash(loginModel.Password);
+            Customer customer = await _customerRepository.GetUserByEmailAsync(loginModel.Email);
 
-            if (customer != null && password == customer.Password) return true;
+            if (customer != null) return true;
             return false;
         }
 
-        public Customer GetCustomerByEmail(string email)
+        public async Task<Customer> GetCustomerByEmailAsync(string email)
         {
-            return _customerRepository.GetUserByEmailAsync(email);
+            return await _customerRepository.GetUserByEmailAsync(email);
         }
 
-        public void RegisterCustomer(Customer customer)
+        public async Task RegisterCustomerAsync(SignUpCustomerDto customerDto)
         {
-            _customerRepository.AddUserAsync(customer);
+            UserRecordArgs args = new UserRecordArgs()
+            {
+                Email = customerDto.Email,
+                Password = customerDto.Password
+            };
+            UserRecord userRecord = await FirebaseAuth.DefaultInstance.CreateUserAsync(args);
+
+            if(userRecord != null)
+            {
+                Customer customer = new Customer()
+                {
+                    _id = userRecord.Uid,
+                    Email = userRecord.Email,
+                    Role = customerDto.Role
+                };
+                await _customerRepository.AddUserAsync(customer);
+                var claims = new Dictionary<string, object>()
+                {
+                    { "role", customer.Role },
+                };
+                await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(userRecord.Uid, claims);
+            }
+        }
+
+        public async Task DeleteCustomerAsync(string customerId)
+        {
+            await FirebaseAuth.DefaultInstance.DeleteUserAsync(customerId);
+            await _customerRepository.DeleteUserAsync(customerId);
         }
     }
 }
