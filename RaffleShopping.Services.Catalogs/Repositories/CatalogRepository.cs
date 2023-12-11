@@ -21,14 +21,14 @@ namespace RaffleShopping.Services.Catalogs.Repositories
             _catalogCollection = mongoDatabase.GetCollection<Catalog>(settings.Value.CollectionName);
         }
 
-        public void AddCatalogAsync(Catalog catalog)
+        public async Task AddCatalogAsync(Catalog catalog)
         {
-            _catalogCollection.InsertOneAsync(catalog);
+            await _catalogCollection.InsertOneAsync(catalog);
         }
 
-        public Task<List<Catalog>> GetAllCatalogsAsync()
+        public async Task<List<Catalog>> GetAllCatalogsAsync()
         {
-            return _catalogCollection.Aggregate().ToListAsync();
+            return await _catalogCollection.Aggregate().ToListAsync();
         }
     }
 }

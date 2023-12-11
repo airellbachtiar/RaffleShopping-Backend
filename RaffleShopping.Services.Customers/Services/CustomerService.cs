@@ -17,7 +17,7 @@ namespace RaffleShopping.Services.Customers.Services
 
         public async Task<bool> LoginAsync(LoginModel loginModel)
         {
-            Customer customer = await  _customerRepository.GetUserByEmailAsync(loginModel.Email);
+            Customer customer = await _customerRepository.GetUserByEmailAsync(loginModel.Email);
 
             if (customer != null) return true;
             return false;

@@ -31,7 +31,7 @@ namespace RaffleShopping.Services.Catalogs.Services
 
         public async Task<List<GetCatalogDto>> GetAllCatalogsAsync()
         {
-            List<Catalog> catalogs = _catalogRepository.GetAllCatalogsAsync().Result;
+            List<Catalog> catalogs = await _catalogRepository.GetAllCatalogsAsync();
 
             List<GetCatalogDto> catalogDtos = catalogs.Select(catalog => new GetCatalogDto
             {

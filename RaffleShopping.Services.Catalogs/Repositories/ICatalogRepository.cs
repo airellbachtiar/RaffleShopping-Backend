@@ -4,7 +4,7 @@ namespace RaffleShopping.Services.Catalogs.Repositories
 {
     public interface ICatalogRepository
     {
-        void AddCatalogAsync(Catalog catalog);
+        Task AddCatalogAsync(Catalog catalog);
         Task<List<Catalog>> GetAllCatalogsAsync();
     }
 }
