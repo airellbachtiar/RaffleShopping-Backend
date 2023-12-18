@@ -9,7 +9,7 @@ namespace RaffleShoppping.Services.RaffleEvents.Dtos
     public class RaffleEventDto
     {
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } = "";
         public double Price { get; set; }
     }
 }

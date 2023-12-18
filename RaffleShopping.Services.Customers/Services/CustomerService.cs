@@ -30,7 +30,7 @@ namespace RaffleShopping.Services.Customers.Services
 
         public async Task RegisterCustomerAsync(SignUpCustomerDto customerDto)
         {
-            UserRecordArgs args = new UserRecordArgs()
+            UserRecordArgs args = new()
             {
                 Email = customerDto.Email,
                 Password = customerDto.Password
@@ -39,7 +39,7 @@ namespace RaffleShopping.Services.Customers.Services
 
             if(userRecord != null)
             {
-                Customer customer = new Customer()
+                Customer customer = new()
                 {
                     _id = userRecord.Uid,
                     Email = userRecord.Email,

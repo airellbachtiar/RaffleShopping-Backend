@@ -69,7 +69,9 @@ namespace RaffleShopping.Services.Customers.Api.Controllers
         {
             try
             {
+                #pragma warning disable CS8604 // Possible null reference argument.
                 await _customerService.DeleteCustomerAsync(User.FindFirst("uid")?.Value);
+                #pragma warning restore CS8604 // Possible null reference argument.
                 return Ok();
             }
             catch (Exception ex)

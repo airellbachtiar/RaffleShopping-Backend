@@ -28,6 +28,8 @@ var config = new ConfigurationBuilder()
     .AddDotNetEnv()
     .Build();
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8601 // Possible null reference assignment.
 string connectionString = config.GetValue<string>("CONNECTION_STRING");
 string databaseName = config.GetValue<string>("DATABASE_NAME");
 string collectionName = config.GetValue<string>("COLLECTION_NAME");

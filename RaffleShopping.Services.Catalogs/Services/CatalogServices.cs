@@ -18,7 +18,7 @@ namespace RaffleShopping.Services.Catalogs.Services
         {
             string blobName = _catalogBlobStorage.UploadImageToAzureBlobAsync(addCatalogDto.Picture).Result;
 
-            Catalog catalog = new Catalog
+            Catalog catalog = new()
             {
                 Title = addCatalogDto.Title,
                 Description = addCatalogDto.Description,
@@ -26,7 +26,7 @@ namespace RaffleShopping.Services.Catalogs.Services
                 Picture = blobName
             };
 
-            _catalogRepository.AddCatalogAsync(catalog);
+            await _catalogRepository.AddCatalogAsync(catalog);
         }
 
         public async Task<List<GetCatalogDto>> GetAllCatalogsAsync()

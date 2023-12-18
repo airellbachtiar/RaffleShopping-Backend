@@ -9,8 +9,8 @@ namespace RaffleShopping.Services.Customers.UnitTests
 {
     public class CustomerServiceUnitTests
     {
-        private Mock<ICustomerRepository> _customerRepository;
-        private CustomerService _customerService;
+        private readonly Mock<ICustomerRepository> _customerRepository;
+        private readonly CustomerService _customerService;
 
         public CustomerServiceUnitTests() 
         {
@@ -18,7 +18,7 @@ namespace RaffleShopping.Services.Customers.UnitTests
             _customerService = new CustomerService( _customerRepository.Object );
         }
 
-        public void SetupMockLoginCredentials()
+        private void SetupMockLoginCredentials()
         {
             var loginCredentials = new Customer
             {
@@ -43,7 +43,7 @@ namespace RaffleShopping.Services.Customers.UnitTests
             }).Result;
 
             //Assert
-            Assert.IsTrue(resultSuccess);
+            Assert.That(resultSuccess, Is.True);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace RaffleShopping.Services.Customers.UnitTests
             }).Result;
 
             //Assert
-            Assert.IsFalse(resultWrongEmail);
+            Assert.That(resultWrongEmail, Is.False);
         }
 
         /*[Test]

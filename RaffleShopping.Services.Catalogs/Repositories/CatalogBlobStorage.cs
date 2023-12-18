@@ -22,7 +22,7 @@ namespace RaffleShopping.Services.Catalogs.Repositories
         {
             try
             {
-                string base64String = base64Image.Substring(base64Image.IndexOf(',') + 1);
+                string base64String = base64Image[(base64Image.IndexOf(',') + 1)..];
                 string fileExtension = GetFileExtension(base64String);
                 string blobName = Guid.NewGuid().ToString() + "." + fileExtension;
 
@@ -50,34 +50,23 @@ namespace RaffleShopping.Services.Catalogs.Repositories
             return $"https://{_accountName}.blob.core.windows.net/{_containerName}/{blobName}";
         }
 
-        private string GetFileExtension(string base64String)
+        private static string GetFileExtension(string base64String)
         {
-            var data = base64String.Substring(0, 5);
+            var data = base64String[..5];
 
-            switch (data.ToUpper())
+            return data.ToUpper() switch
             {
-                case "IVBOR":
-                    return "png";
-                case "/9J/4":
-                    return "jpg";
-                case "AAAAF":
-                    return "mp4";
-                case "JVBER":
-                    return "pdf";
-                case "AAABA":
-                    return "ico";
-                case "UMFYI":
-                    return "rar";
-                case "E1XYD":
-                    return "rtf";
-                case "U1PKC":
-                    return "txt";
-                case "MQOWM":
-                case "77U/M":
-                    return "srt";
-                default:
-                    return string.Empty;
-            }
+                "IVBOR" => "png",
+                "/9J/4" => "jpg",
+                "AAAAF" => "mp4",
+                "JVBER" => "pdf",
+                "AAABA" => "ico",
+                "UMFYI" => "rar",
+                "E1XYD" => "rtf",
+                "U1PKC" => "txt",
+                "MQOWM" or "77U/M" => "srt",
+                _ => string.Empty,
+            };
         }
     }
 }

@@ -45,7 +45,9 @@ builder.Services.Configure<AzureServiceBusSettings>(options =>
         {
             TransportType = ServiceBusTransportType.AmqpWebSockets
         });
+    #pragma warning disable CS8601 // Possible null reference assignment.
     options.QueueName = serviceBusQueueName;
+    #pragma warning restore CS8601 // Possible null reference assignment.
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
