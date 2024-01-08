@@ -31,14 +31,16 @@ namespace RaffleShopping.Services.Customers.Authentications
                 return AuthenticateResult.NoResult();
             }
 
+            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             string bearerToken = Context.Request.Headers["Authorization"];
+            #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
             if (bearerToken == null || !bearerToken.StartsWith(BEARER_PREFIX))
             {
                 return AuthenticateResult.Fail("Invalid scheme.");
             }
 
-            string token = bearerToken.Substring(BEARER_PREFIX.Length);
+            string token = bearerToken[BEARER_PREFIX.Length..];
 
             try
             {
@@ -55,7 +57,7 @@ namespace RaffleShopping.Services.Customers.Authentications
 
         private AuthenticationTicket CreateAuthenticationTicket(FirebaseToken firebaseToken)
         {
-            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(new List<ClaimsIdentity>()
+            ClaimsPrincipal claimsPrincipal = new(new List<ClaimsIdentity>()
             {
                 new ClaimsIdentity(ToClaims(firebaseToken.Claims), nameof(ClaimsIdentity))
             });
@@ -63,13 +65,15 @@ namespace RaffleShopping.Services.Customers.Authentications
             return new AuthenticationTicket(claimsPrincipal, JwtBearerDefaults.AuthenticationScheme);
         }
 
-        private IEnumerable<Claim> ToClaims(IReadOnlyDictionary<string, object> claims)
+        private static IEnumerable<Claim> ToClaims(IReadOnlyDictionary<string, object> claims)
         {
+            #pragma warning disable CS8604 // Possible null reference argument.
             return new List<Claim>
             {
                 new Claim("role", claims["role"].ToString()),
                 new Claim("user_id", claims["user_id"].ToString())
             };
+            #pragma warning restore CS8604 // Possible null reference argument.
         }
     }
 }

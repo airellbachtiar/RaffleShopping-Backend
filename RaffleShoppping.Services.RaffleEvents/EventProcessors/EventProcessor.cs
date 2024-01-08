@@ -24,7 +24,7 @@ namespace RaffleShoppping.Services.RaffleEvents.EventProcessors
             }
         }
 
-        private EventType GetEventType(string message)
+        private static EventType GetEventType(string message)
         {
             var eventType = JsonSerializer.Deserialize<MessageEventDto>(message);
             if (eventType != null) return eventType.EventType;
@@ -33,11 +33,9 @@ namespace RaffleShoppping.Services.RaffleEvents.EventProcessors
 
         private void AddCatalog(string message)
         {
-            using (var scoper = _serviceScopeFactory.CreateScope())
-            {
-                var catalog = JsonSerializer.Deserialize<AddCatalogDto>(message);
-                Console.WriteLine(catalog);
-            }
+            using var scoper = _serviceScopeFactory.CreateScope();
+            var catalog = JsonSerializer.Deserialize<AddCatalogDto>(message);
+            Console.WriteLine(catalog);
         }
     }
 }

@@ -7,11 +7,13 @@ namespace RaffleShopping.Services.Customers.Models
     public class Customer
     {
         [BsonId]
-        public string _id { get; set; }
+        #pragma warning disable IDE1006 // Naming Styles
+        public string _id { get; set; } = "";
+        #pragma warning restore IDE1006 // Naming Styles
 
         [Required]
-        public string Email { get; set; }
+        public string Email { get; set; } = "";
 
-        public string Role { get; set; }
+        public string Role { get; set; } = "";
     }
 }

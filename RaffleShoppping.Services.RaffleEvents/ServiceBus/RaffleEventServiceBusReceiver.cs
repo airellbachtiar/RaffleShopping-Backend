@@ -52,7 +52,9 @@ namespace RaffleShoppping.Services.RaffleEvents.ServiceBus
             await _processor.StopProcessingAsync(stoppingToken);
         }
 
+        #pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
         public override async void Dispose()
+        #pragma warning restore CA1816 // Dispose methods should call SuppressFinalize
         {
             if (_processor.IsProcessing)
             {

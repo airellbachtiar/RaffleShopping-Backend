@@ -24,7 +24,7 @@ namespace RaffleShopping.Services.Catalogs.UnitTests
         }
 
         [Test]
-        public void AddCatalog_ValidDto_CallsAddCatalogAsync()
+        public async Task AddCatalog_ValidDto_CallsAddCatalogAsync()
         {
             // Arrange
             var addCatalogDto = new AddCatalogDto
@@ -35,7 +35,7 @@ namespace RaffleShopping.Services.Catalogs.UnitTests
             };
 
             // Act
-            _catalogServices.AddCatalogAsync(addCatalogDto);
+            await _catalogServices.AddCatalogAsync(addCatalogDto);
 
             // Assert
             _catalogRepositoryMock.Verify(x => x.AddCatalogAsync(It.IsAny<Catalog>()), Times.Once);
