@@ -4,7 +4,7 @@ namespace RaffleShopping.Services.Catalogs.Models
 {
     public class AzureServiceBusSettings
     {
-        public ServiceBusClient ServiceBusClient { get; set; } = new ServiceBusClient("");
+        public ServiceBusClient? ServiceBusClient { get; set; }
         public string QueueName { get; set; } = "";
     }
 }
