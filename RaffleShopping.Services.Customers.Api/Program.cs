@@ -17,7 +17,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                          policy.WithOrigins("http://raffleshopping.com")
+                                .WithHeaders("Content-Type", "Authorization")
+                                .WithMethods("POST", "DELETE");
                       });
 });
 
